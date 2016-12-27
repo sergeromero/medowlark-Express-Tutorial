@@ -1,0 +1,15 @@
+{
+  "name": "medowlark",
+  "version": "1.0.0",
+  "description": "An exercise to learn express",
+  "main": "medowlark.js",
+  "scripts": {
+    "start": "node medowlark.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0"
+  }
+}
