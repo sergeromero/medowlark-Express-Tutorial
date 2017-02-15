@@ -4,7 +4,9 @@
   "description": "An exercise to learn express",
   "main": "medowlark.js",
   "scripts": {
-    "start": "node medowlark.js"
+    "start": "node medowlark.js",
+    "test": "mocha-phantomjs",
+    "unit": "mocha -u tdd -R spec"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +16,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "mocha-phantomjs": "^4.1.0"
   }
 }
