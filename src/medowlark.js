@@ -58,6 +58,10 @@ app.get('/nursery-rhyme', function(req, res){
     res.render('nursery-rhyme');
 });
 
+app.get('/sectiontest', function(req, res){
+    res.render('sections-test');
+});
+
 app.get('/data/nursery-rhyme', function(req,res){
     res.json({
         animal: 'squirrel',

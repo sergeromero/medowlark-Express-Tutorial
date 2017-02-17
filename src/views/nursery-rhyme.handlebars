@@ -13,9 +13,7 @@
 {{#section 'jquery'}}
     <script>
         $(document).ready(function() {
-            var nurseryRhymeTemplate = Handlebars.compile(
-                $('#nurseryRhymeTemplate').html();
-            );
+            var nurseryRhymeTemplate = Handlebars.compile($('#nurseryRhymeTemplate').html());
 
             var $nurseryRhyme = $('#nurseryRhyme');
 
@@ -25,7 +23,7 @@
                     animal: 'basilisk',
                     bodyPart: 'tail',
                     adjective: 'sharp',
-                    nount: 'a needle'
+                    noun: 'a needle'
                 }));
             });
 
