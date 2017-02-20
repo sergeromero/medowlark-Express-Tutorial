@@ -16,6 +16,7 @@ var handlebars = require('express-handlebars')
             }
         }
     });
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -33,7 +34,9 @@ app.use(function(req, res, next){
 
     res.locals.partials.weatherContext = weather.getWeatherData();
     next();
-})
+});
+
+app.use(require('body-parser').urlencoded({ extended: true }));
 
 app.get('/', function(req, res){
     res.render('home');
@@ -62,7 +65,7 @@ app.get('/sectiontest', function(req, res){
     res.render('sections-test');
 });
 
-app.get('/data/nursery-rhyme', function(req,res){
+app.get('/data/nursery-rhyme', function(req, res){
     res.json({
         animal: 'squirrel',
         bodyPart: 'tail',
@@ -70,6 +73,23 @@ app.get('/data/nursery-rhyme', function(req,res){
         noun: 'heck'
     });
 });
+
+app.get('/newsletter', function(req, res){
+    //csrf temporary dummy value
+    res.render('newsletter', { csrf: 'CSRF token goes here' });
+});
+
+app.get('/thank-you', function(req, res){
+    res.render('thank-you');
+})
+
+app.post('/process', function(req, res){
+    console.log(`Form (from querystring): ${req.query.form}`);
+    console.log(`CSRF token (from hidden form field): ${req.body._csrf}`);
+    console.log(`Name (from visible form field): ${req.body.name}`);
+    console.log(`Email (from visible form field): ${req.body.email}`);
+    res.redirect(303, '/thank-you');
+})
 
 app.use(function(req, res){
     res.status(404);
