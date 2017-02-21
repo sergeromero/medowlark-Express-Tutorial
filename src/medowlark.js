@@ -1,6 +1,7 @@
 var express = require('express');
 var fortune = require('./lib/fortune.js');
 var weather = require('./lib/weather.js');
+var formidable = require('formidable');
 
 var app = express();
 
@@ -81,7 +82,12 @@ app.get('/newsletter', function(req, res){
 
 app.get('/thank-you', function(req, res){
     res.render('thank-you');
-})
+});
+
+app.get('/contest/vacation-photo', function(req, res){
+    var now = new Date();
+    res.render('contest/vacation-photo', { year: now.getFullYear(), month: now.getMonth() });
+});
 
 app.post('/process', function(req, res){
     console.log(`Form (from querystring): ${req.query.form}`);
@@ -89,7 +95,21 @@ app.post('/process', function(req, res){
     console.log(`Name (from visible form field): ${req.body.name}`);
     console.log(`Email (from visible form field): ${req.body.email}`);
     res.redirect(303, '/thank-you');
-})
+});
+
+app.post('/contest/vacation-photo/:year/:month', function(req, res){
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function(err, fields, files){
+        if(err) return res.redirect(303, '/error');
+
+        console.log('received fields:');
+        console.log(fields);
+        console.log('received files:');
+        console.log(files);
+        res.redirect(303, '/thank-you');
+    });
+});
 
 app.use(function(req, res){
     res.status(404);
