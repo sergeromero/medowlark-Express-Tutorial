@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node medowlark.js",
     "test": "mocha-phantomjs",
-    "unit": "mocha -u tdd -R spec"
+    "unit": "mocha -u tdd -R spec",
+    "midtest": "node middleware-test.js"
   },
   "author": "",
   "license": "ISC",
